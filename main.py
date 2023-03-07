@@ -1,7 +1,5 @@
-import os
 from datetime import date
 from functools import wraps
-from dotenv import load_dotenv
 
 from flask import Flask, render_template, redirect, url_for, flash, abort
 from flask_bootstrap import Bootstrap5
@@ -14,9 +12,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 
-load_dotenv()
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 
 ckeditor = CKEditor(app)
 app.config['CKEDITOR_LANGUAGE'] = 'en'
