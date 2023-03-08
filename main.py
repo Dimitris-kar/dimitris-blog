@@ -15,7 +15,7 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "8BYkEfBA6O6donzWlSihBXox7C0sKR6b")
 
 ckeditor = CKEditor(app)
 app.config['CKEDITOR_LANGUAGE'] = 'en'
@@ -54,7 +54,7 @@ class BlogPost(db.Model):
 class Comment(db.Model):
     __tablename__ = "comments"
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.Text(500), nullable=False)
+    text = db.Column(db.Text, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     comment_author = relationship("Users", back_populates="comments")
     posts_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
